@@ -1,6 +1,6 @@
-﻿using Tools;
+﻿using PointlessWaymarks.VaultfuscationTools;
 
-namespace VaultfuscationManualConsoleTest;
+namespace PointlessWaymarks.VaultfuscationManualConsoleTest;
 
 public class TestSettings : ISettingsFileType
 {

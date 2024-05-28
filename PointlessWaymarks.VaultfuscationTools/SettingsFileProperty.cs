@@ -1,4 +1,4 @@
-﻿namespace Tools;
+﻿namespace PointlessWaymarks.VaultfuscationTools;
 
 public class SettingsFileProperty<T>
 {
@@ -40,5 +40,5 @@ public class SettingsFileProperty<T>
     ///     If a user's entry is valid as determined by 'UserEntryIsValid' then this method
     ///     will set the value of the property and then 'PropertyIsValid' will be called.
     /// </summary>
-    public Action<T, string> SetValue { get; set; } = (settings, userEntry) => { };
+    public Action<T, string> SetValue { get; set; } = (_, _) => { };
 }

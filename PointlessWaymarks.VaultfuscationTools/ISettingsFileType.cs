@@ -1,4 +1,4 @@
-﻿namespace Tools;
+﻿namespace PointlessWaymarks.VaultfuscationTools;
 
 public interface ISettingsFileType
 {

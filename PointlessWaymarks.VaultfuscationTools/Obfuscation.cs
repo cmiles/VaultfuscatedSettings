@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Tools;
+namespace PointlessWaymarks.VaultfuscationTools;
 
 public static class Obfuscation
 {

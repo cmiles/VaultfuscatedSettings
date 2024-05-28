@@ -2,7 +2,7 @@
 using GitCredentialManager;
 using Microsoft.Extensions.Logging;
 
-namespace Tools;
+namespace PointlessWaymarks.VaultfuscationTools;
 
 public class ObfuscatedSettingsConsoleSetup<T>(ILogger<ObfuscatedSettingsConsoleSetup<T>> logger)
     where T : class, ISettingsFileType, new()

@@ -1,45 +1,84 @@
 ﻿using System.Reflection;
+using GitCredentialManager;
 using Microsoft.Extensions.Logging;
-using Tools;
-using VaultfuscationManualConsoleTest;
+using PointlessWaymarks.VaultfuscationManualConsoleTest;
+using PointlessWaymarks.VaultfuscationTools;
+
+using var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+var logger = loggerFactory.CreateLogger<ObfuscatedSettingsConsoleSetup<TestSettings>>();
+
+AppDomain.CurrentDomain.UnhandledException += (sender, eventArgs) =>
+{
+    Console.WriteLine("");
+    Console.WriteLine("FAILED!!! Unhandled Exception...");
+    Console.WriteLine("");
+
+    logger.LogCritical(eventArgs.ExceptionObject as Exception,
+        $"Unhandled Exception {(eventArgs.ExceptionObject as Exception)?.Message ?? ""}");
+    return;
+};
 
 var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
 var testSettingsFile = Path.Combine(executingDirectory, $"TestSettings-{DateTime.Now.Ticks}.json");
 
-using var factory = LoggerFactory.Create(builder => builder.AddConsole());
-var logger = factory.CreateLogger<ObfuscatedSettingsConsoleSetup<TestSettings>>();
-
-Console.WriteLine("Vaultfuscation Manual Console Test - this is an interactive/manual test");
-Console.WriteLine("  that will prompt you to enter some values from a fake settings file that");
-Console.WriteLine("  is meant to be representative of the type of information this setup is");
-Console.WriteLine("  intended to store.");
 Console.WriteLine("");
-Console.WriteLine("PLEASE remember that the VaultfuscatedSettings library is IN NO WAY INTENDED");
-Console.WriteLine("  TO ENCRYPT OR FULLY SECURE ANY DATA - strings in memory are not secure and");
-Console.WriteLine("  the key that is used to de-obfuscate a settings file is store in a");
-Console.WriteLine("  LOCAL Credentials vault -> any attacker or person with full access to your");
-Console.WriteLine("  user account will automatically have ALL of the pieces they need to access");
+Console.WriteLine("");
+Console.WriteLine("Vaultfuscation Manual Console Test - this is an interactive/manual test");
+Console.WriteLine("  that will prompt you to enter some values for a test settings file."); 
+Console.WriteLine("");
+Console.WriteLine("The VaultfuscatedSettings library is IN NO WAY INTENDED TO ENCRYPT OR");
+Console.WriteLine("  FULLY SECURE ANY DATA - strings in memory are not secure and the");
+Console.WriteLine("  key that is used to de-obfuscate a settings file is stored in a");
+Console.WriteLine("  LOCAL Credentials Vault.");
+Console.WriteLine("");
+Console.WriteLine("Any attacker or person with full access to your user account");
+Console.WriteLine("  will automatically have ALL of the pieces they need to access");
 Console.WriteLine("  a settings file created with this library!!! In some cases this is valuable");
 Console.WriteLine("  and meaningful protection - in some cases it is completely useless and");
 Console.WriteLine("  a dangerously bad choice!");
 Console.WriteLine("");
 Console.WriteLine($"Executing Directory: {executingDirectory}");
+Console.WriteLine("");
 Console.WriteLine($"Test Settings File: {testSettingsFile}");
 Console.WriteLine("");
+Console.WriteLine("");
+
+
+var vaultService = "http://vaultfuscationmanualconsoletest.test";
+
+var preCheckStore = CredentialManager.Create();
+var preCheckCredentials = preCheckStore.Get(vaultService, new ObfuscatedSettingsConsoleSetup<TestSettings>(logger).VaultAccount);
+
+if (preCheckCredentials is not null)
+{
+    Console.WriteLine("Setup: Found existing Vault Credentials - Removing");
+    preCheckStore.Remove(vaultService, new ObfuscatedSettingsConsoleSetup<TestSettings>(logger).VaultAccount);
+
+    preCheckCredentials = preCheckStore.Get(vaultService, new ObfuscatedSettingsConsoleSetup<TestSettings>(logger).VaultAccount);
+
+    if(preCheckCredentials is not null)
+    {
+        Console.WriteLine("Setup: FAILED - Could Not Remove Existing Vault Credentials");
+        return;
+    }
+}
+
+Console.WriteLine("");
 Console.WriteLine("Part 1 - New File Setup:");
+Console.WriteLine("");
 
 var settingFileReadAndSetup = new ObfuscatedSettingsConsoleSetup<TestSettings>(logger)
 {
     SettingsFile = testSettingsFile,
     SettingsFileIdentifier = TestSettings.SettingsTypeIdentifier,
-    VaultServiceIdentifier = "http://vaultfuscationmanualconsoletest.test",
+    VaultServiceIdentifier = vaultService,
     SettingsFileProperties =
     [
         new SettingsFileProperty<TestSettings>
         {
             PropertyDisplayName = "Email",
             PropertyEntryHelp =
-                "The email to use to login to the API.",
+                "The Email for ... - this email field doesn't try to validate for a valid email, just rejects blank.",
             HideEnteredValue = false,
             PropertyIsValid =
                 ObfuscatedSettingsHelpers.PropertyIsValidIfNotNullOrWhiteSpace<TestSettings>(x => x.Email),
@@ -50,7 +89,7 @@ var settingFileReadAndSetup = new ObfuscatedSettingsConsoleSetup<TestSettings>(l
         {
             PropertyDisplayName = "Password",
             PropertyEntryHelp =
-                "The password to use to login to the API.",
+                "The Password for ... - blank is not valid.",
             HideEnteredValue = true,
             PropertyIsValid =
                 ObfuscatedSettingsHelpers.PropertyIsValidIfNotNullOrWhiteSpace<TestSettings>(x => x.Password),
@@ -61,10 +100,10 @@ var settingFileReadAndSetup = new ObfuscatedSettingsConsoleSetup<TestSettings>(l
         {
             PropertyDisplayName = "Backup Directory",
             PropertyEntryHelp =
-                "The backup directory will be used to save the backup data - it is best to dedicate a directory just to this data to avoid conflicts with other data.",
+                "A directory field - this is setup to try to create the directory if it does not exist and is only valid if the directory exists or can be created. If you input a directory that does not exist and the program can create it you will have to manually clean it up - the test program will not auto-delete it...",
             HideEnteredValue = false,
             PropertyIsValid =
-                ObfuscatedSettingsHelpers.PropertyIsValidIfNotNullOrWhiteSpace<TestSettings>(x => x.BackupDirectory),
+                ObfuscatedSettingsHelpers.PropertyIsValidIfDirectoryExistsOrCanBeCreated<TestSettings>(x => x.BackupDirectory),
             UserEntryIsValid = ObfuscatedSettingsHelpers.UserEntryIsValidIfNotNullOrWhiteSpace(),
             SetValue = (settings, userEntry) => settings.BackupDirectory = userEntry.Trim()
         },
@@ -72,7 +111,7 @@ var settingFileReadAndSetup = new ObfuscatedSettingsConsoleSetup<TestSettings>(l
         {
             PropertyDisplayName = "Days Back",
             PropertyEntryHelp =
-                "The number of days back to check for backups.",
+                "Tests a int field in the settings file - inputting something like 'a' will prompt you again for entry since it is not a valid int.",
             HideEnteredValue = false,
             PropertyIsValid = ObfuscatedSettingsHelpers.PropertyIsValidIfPositiveInt<TestSettings>(x => x.NumberOfDays),
             UserEntryIsValid = ObfuscatedSettingsHelpers.UserEntryIsValidIfInt(),
@@ -85,11 +124,13 @@ var settingsSetupResultPart1 = await settingFileReadAndSetup.Setup();
 
 if (!settingsSetupResultPart1.isValid)
 {
+    Console.WriteLine("");
     Console.WriteLine($"Part 1: FAILED - setup returned isValid: {settingsSetupResultPart1.isValid}");
     Console.WriteLine($"  {settingsSetupResultPart1.settings}");
     return;
 }
 
+Console.WriteLine("");
 Console.WriteLine($"Part 1: SUCCESS - setup returned isValid: {settingsSetupResultPart1.isValid}.");
 Console.WriteLine($"  {settingsSetupResultPart1.settings}");
 
@@ -108,6 +149,7 @@ var settingsSetupResult2 = await settingFileReadAndSetup.Setup();
 
 if (!settingsSetupResult2.isValid)
 {
+    Console.WriteLine("");
     Console.WriteLine($"Part 2: FAILED - setup returned isValid: {settingsSetupResult2.isValid}");
     Console.WriteLine($"  {settingsSetupResult2.settings}");
     return;
@@ -115,3 +157,28 @@ if (!settingsSetupResult2.isValid)
 
 Console.WriteLine($"Part 2: SUCCESS - setup returned isValid: {settingsSetupResult2.isValid}.");
 Console.WriteLine($"  {settingsSetupResult2.settings}");
+
+Console.WriteLine("");
+
+Console.WriteLine("Part 3: Check Vault for Key and Delete");
+
+var store = CredentialManager.Create();
+var settingsFileKey = store.Get(vaultService, settingFileReadAndSetup.VaultAccount);
+
+if (settingsFileKey is null)
+{
+    Console.WriteLine("Part 3: FAILED - Could Not Get Expected Vault Credentials");
+    return;
+}
+
+Console.WriteLine("");
+Console.WriteLine(
+    $"Vault Key (should match what you entered above - the program will not automatically check for a match...): {settingsFileKey!.Password}");
+store.Remove(vaultService, settingFileReadAndSetup.VaultAccount);
+
+var settingsFileKeyExpectedDeleted = store.Get(vaultService, settingFileReadAndSetup.VaultAccount);
+
+Console.WriteLine("");
+Console.WriteLine(settingsFileKeyExpectedDeleted is not null
+    ? "Part 3: FAILED - Delete of Vault Credentials Failed?"
+    : "Part 3: SUCCESS - Vault Credentials Deleted");
