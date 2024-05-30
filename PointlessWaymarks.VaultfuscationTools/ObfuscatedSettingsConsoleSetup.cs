@@ -54,12 +54,12 @@ public class ObfuscatedSettingsConsoleSetup<T>(ILogger<ObfuscatedSettingsConsole
         {
             Console.WriteLine();
             var userSettingsFileKey =
-                ConsoleEntry.GetPasswordFromConsole("Please enter the settings file Obfuscation Key: ");
+                ConsoleEntryTools.GetObscuredStringFromConsole("Please enter the settings file ObfuscationTools Key: ");
             Console.WriteLine();
 
             if (string.IsNullOrWhiteSpace(userSettingsFileKey))
             {
-                Log.LogError("Sorry - a non-blank Obfuscation Key must provided... exiting.");
+                Log.LogError("Sorry - a non-blank ObfuscationTools Key must provided... exiting.");
                 return (false, new T());
             }
 
@@ -109,7 +109,7 @@ public class ObfuscatedSettingsConsoleSetup<T>(ILogger<ObfuscatedSettingsConsole
                 Console.Write($"{loopSettings.PropertyDisplayName}: ");
 
                 var userEnteredValue = loopSettings.HideEnteredValue
-                    ? ConsoleEntry.GetPasswordFromConsole(string.Empty)
+                    ? ConsoleEntryTools.GetObscuredStringFromConsole(string.Empty)
                     : Console.ReadLine();
 
                 var userEnteredValueIsValid = loopSettings.UserEntryIsValid(userEnteredValue ?? string.Empty);
