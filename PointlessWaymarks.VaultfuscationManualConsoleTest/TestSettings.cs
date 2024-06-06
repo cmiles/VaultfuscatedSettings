@@ -1,4 +1,4 @@
-﻿using PointlessWaymarks.VaultfuscationTools;
+using PointlessWaymarks.VaultfuscationTools;
 
 namespace PointlessWaymarks.VaultfuscationManualConsoleTest;
 
@@ -10,7 +10,7 @@ public class TestSettings : ISettingsFileType
     public int NumberOfDays { get; set; }
     public string Password { get; set; } = string.Empty;
     public string SettingsType { get; set; } = SettingsTypeIdentifier;
-
+    
     public override string ToString()
     {
         return $"Email: {Email}, Password: {Password}, Backup Directory: {BackupDirectory}, Days Back: {NumberOfDays}";

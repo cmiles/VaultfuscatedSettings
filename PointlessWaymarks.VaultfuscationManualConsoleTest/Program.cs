@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using GitCredentialManager;
 using Microsoft.Extensions.Logging;
 using PointlessWaymarks.VaultfuscationManualConsoleTest;
@@ -7,15 +7,14 @@ using PointlessWaymarks.VaultfuscationTools;
 using var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
 var logger = loggerFactory.CreateLogger<ObfuscatedSettingsConsoleSetup<TestSettings>>();
 
-AppDomain.CurrentDomain.UnhandledException += (sender, eventArgs) =>
+AppDomain.CurrentDomain.UnhandledException += (_, eventArgs) =>
 {
     Console.WriteLine("");
     Console.WriteLine("FAILED!!! Unhandled Exception...");
     Console.WriteLine("");
-
+    
     logger.LogCritical(eventArgs.ExceptionObject as Exception,
         $"Unhandled Exception {(eventArgs.ExceptionObject as Exception)?.Message ?? ""}");
-    return;
 };
 
 var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
@@ -24,7 +23,7 @@ var testSettingsFile = Path.Combine(executingDirectory, $"TestSettings-{DateTime
 Console.WriteLine("");
 Console.WriteLine("");
 Console.WriteLine("Vaultfuscation Manual Console Test - this is an interactive/manual test");
-Console.WriteLine("  that will prompt you to enter some values for a test settings file."); 
+Console.WriteLine("  that will prompt you to enter some values for a test settings file.");
 Console.WriteLine("");
 Console.WriteLine("The VaultfuscatedSettings library is IN NO WAY INTENDED TO ENCRYPT OR");
 Console.WriteLine("  FULLY SECURE ANY DATA - strings in memory are not secure and the");
@@ -47,16 +46,18 @@ Console.WriteLine("");
 var vaultService = "http://vaultfuscationmanualconsoletest.test";
 
 var preCheckStore = CredentialManager.Create();
-var preCheckCredentials = preCheckStore.Get(vaultService, new ObfuscatedSettingsConsoleSetup<TestSettings>(logger).VaultAccount);
+var preCheckCredentials =
+    preCheckStore.Get(vaultService, new ObfuscatedSettingsConsoleSetup<TestSettings>(logger).VaultAccount);
 
 if (preCheckCredentials is not null)
 {
     Console.WriteLine("Setup: Found existing Vault Credentials - Removing");
     preCheckStore.Remove(vaultService, new ObfuscatedSettingsConsoleSetup<TestSettings>(logger).VaultAccount);
-
-    preCheckCredentials = preCheckStore.Get(vaultService, new ObfuscatedSettingsConsoleSetup<TestSettings>(logger).VaultAccount);
-
-    if(preCheckCredentials is not null)
+    
+    preCheckCredentials =
+        preCheckStore.Get(vaultService, new ObfuscatedSettingsConsoleSetup<TestSettings>(logger).VaultAccount);
+    
+    if (preCheckCredentials is not null)
     {
         Console.WriteLine("Setup: FAILED - Could Not Remove Existing Vault Credentials");
         return;
@@ -103,7 +104,8 @@ var settingFileReadAndSetup = new ObfuscatedSettingsConsoleSetup<TestSettings>(l
                 "A directory field - this is setup to try to create the directory if it does not exist and is only valid if the directory exists or can be created. If you input a directory that does not exist and the program can create it you will have to manually clean it up - the test program will not auto-delete it...",
             HideEnteredValue = false,
             PropertyIsValid =
-                ObfuscatedSettingsHelpers.PropertyIsValidIfDirectoryExistsOrCanBeCreated<TestSettings>(x => x.BackupDirectory),
+                ObfuscatedSettingsHelpers.PropertyIsValidIfDirectoryExistsOrCanBeCreated<TestSettings>(x =>
+                    x.BackupDirectory),
             UserEntryIsValid = ObfuscatedSettingsHelpers.UserEntryIsValidIfNotNullOrWhiteSpace(),
             SetValue = (settings, userEntry) => settings.BackupDirectory = userEntry.Trim()
         },
@@ -173,7 +175,7 @@ if (settingsFileKey is null)
 
 Console.WriteLine("");
 Console.WriteLine(
-    $"Vault Key (should match what you entered above - the program will not automatically check for a match...): {settingsFileKey!.Password}");
+    $"Vault Key (should match what you entered above - the program will not automatically check for a match...): {settingsFileKey.Password}");
 store.Remove(vaultService, settingFileReadAndSetup.VaultAccount);
 
 var settingsFileKeyExpectedDeleted = store.Get(vaultService, settingFileReadAndSetup.VaultAccount);
