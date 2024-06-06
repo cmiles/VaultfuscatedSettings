@@ -4,7 +4,6 @@ using System.Text;
 namespace PointlessWaymarks.VaultfuscationTools;
 
 public static class ObfuscationTools
-public static class Obfuscation
 {
     /// <summary>
     ///     AES String Decryption - the simplest way to use this is to only use the paired Encrypt/Decrypt
