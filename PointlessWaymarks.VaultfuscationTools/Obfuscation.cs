@@ -12,12 +12,11 @@ public static class Obfuscation
 
         var combined = Convert.FromBase64String(textToDecrypt);
         var buffer = new byte[combined.Length];
-        var hash = SHA512.Create();
         var aesKey = new byte[24];
-        Buffer.BlockCopy(hash.ComputeHash(Encoding.UTF8.GetBytes(key)), 0, aesKey, 0, 24);
+        Buffer.BlockCopy(SHA512.HashData(Encoding.UTF8.GetBytes(key)), 0, aesKey, 0, 24);
 
         using var aes = Aes.Create();
-        if (aes == null) throw new ArgumentException("Parameter must not be null.", nameof(aes));
+        if (aes == null) throw new NullReferenceException("AES Object Creation Returned Null?");
 
         aes.Key = aesKey;
 
@@ -45,12 +44,11 @@ public static class Obfuscation
         if (string.IsNullOrEmpty(key)) throw new ArgumentException("Key must have valid value.", nameof(key));
 
         var buffer = Encoding.UTF8.GetBytes(text);
-        var hash = SHA512.Create();
         var aesKey = new byte[24];
-        Buffer.BlockCopy(hash.ComputeHash(Encoding.UTF8.GetBytes(key)), 0, aesKey, 0, 24);
+        Buffer.BlockCopy(SHA512.HashData(Encoding.UTF8.GetBytes(key)), 0, aesKey, 0, 24);
 
         using var aes = Aes.Create();
-        if (aes == null) throw new ArgumentException("Parameter must not be null.", nameof(aes));
+        if (aes == null) throw new NullReferenceException("AES Object Creation Returned Null?");
 
         aes.Key = aesKey;
 

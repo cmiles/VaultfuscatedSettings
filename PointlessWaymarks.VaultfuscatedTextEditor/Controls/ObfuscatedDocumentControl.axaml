@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:PointlessWaymarks.VaultfuscatedEditor.Controls"
+             xmlns:statusLayer="clr-namespace:PointlessWaymarks.AvaloniaToolkit.StatusLayer;assembly=PointlessWaymarks.AvaloniaToolkit"
+             xmlns:controls1="clr-namespace:PointlessWaymarks.VaultfuscatedTextEditor.Controls"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PointlessWaymarks.VaultfuscatedTextEditor.Controls.ObfuscatedDocumentControl"
+             x:DataType="controls1:ObfuscatedDocumentContext">
+    <Grid RowDefinitions="Auto,*">
+        <WrapPanel Orientation="Horizontal">
+            <Button Command="{Binding TestCommand}">Load - Vault</Button>
+            <Button Command="{Binding Test02Command}">Load - Key</Button>
+            <Button>Save</Button>
+            <Button>Save As</Button>
+            <Button>Close</Button>
+        </WrapPanel>
+        <Border Grid.Row="1" BorderThickness="1" CornerRadius="2">
+            <TextBox Text="{Binding FileText}"></TextBox>
+        </Border>
+      <statusLayer:StatusLayerControl Grid.Row="0" Grid.RowSpan="2" DataContext="{Binding StatusContext}"></statusLayer:StatusLayerControl>
+    </Grid>
+</UserControl>
