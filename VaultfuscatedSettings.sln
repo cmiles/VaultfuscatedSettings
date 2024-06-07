@@ -23,10 +23,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointlessWaymarks.LlamaAspe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointlessWaymarks.CommonTools", "PointlessWaymarksTools\PointlessWaymarks.CommonTools\PointlessWaymarks.CommonTools.csproj", "{E7BB5E7F-D3CD-4558-9025-575969F89BD5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PointlessWaymarksTools", "PointlessWaymarksTools", "{2677EC95-4A50-4C7E-BA99-90D97AF4F4C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
+		LamaDebug|Any CPU = LamaDebug|Any CPU
+		LamaDebug|x64 = LamaDebug|x64
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 	EndGlobalSection
@@ -35,6 +39,10 @@ Global
 		{B738FD80-2A14-4904-A4E4-8DC02132334B}.Debug|Any CPU.Build.0 = Debug|x64
 		{B738FD80-2A14-4904-A4E4-8DC02132334B}.Debug|x64.ActiveCfg = Debug|x64
 		{B738FD80-2A14-4904-A4E4-8DC02132334B}.Debug|x64.Build.0 = Debug|x64
+		{B738FD80-2A14-4904-A4E4-8DC02132334B}.LamaDebug|Any CPU.ActiveCfg = Debug|x64
+		{B738FD80-2A14-4904-A4E4-8DC02132334B}.LamaDebug|Any CPU.Build.0 = Debug|x64
+		{B738FD80-2A14-4904-A4E4-8DC02132334B}.LamaDebug|x64.ActiveCfg = Debug|x64
+		{B738FD80-2A14-4904-A4E4-8DC02132334B}.LamaDebug|x64.Build.0 = Debug|x64
 		{B738FD80-2A14-4904-A4E4-8DC02132334B}.Release|Any CPU.ActiveCfg = Release|x64
 		{B738FD80-2A14-4904-A4E4-8DC02132334B}.Release|Any CPU.Build.0 = Release|x64
 		{B738FD80-2A14-4904-A4E4-8DC02132334B}.Release|x64.ActiveCfg = Release|x64
@@ -43,6 +51,10 @@ Global
 		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.Debug|Any CPU.Build.0 = Debug|x64
 		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.Debug|x64.ActiveCfg = Debug|x64
 		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.Debug|x64.Build.0 = Debug|x64
+		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.LamaDebug|Any CPU.ActiveCfg = LamaDebug|x64
+		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.LamaDebug|Any CPU.Build.0 = LamaDebug|x64
+		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.LamaDebug|x64.ActiveCfg = LamaDebug|x64
+		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.LamaDebug|x64.Build.0 = LamaDebug|x64
 		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.Release|Any CPU.ActiveCfg = Release|x64
 		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.Release|Any CPU.Build.0 = Release|x64
 		{FCBD00E1-012A-492B-B3F7-8581AA4FB2D7}.Release|x64.ActiveCfg = Release|x64
@@ -51,6 +63,10 @@ Global
 		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.Debug|Any CPU.Build.0 = Debug|x64
 		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.Debug|x64.ActiveCfg = Debug|x64
 		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.Debug|x64.Build.0 = Debug|x64
+		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.LamaDebug|Any CPU.ActiveCfg = LamaDebug|x64
+		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.LamaDebug|Any CPU.Build.0 = LamaDebug|x64
+		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.LamaDebug|x64.ActiveCfg = LamaDebug|x64
+		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.LamaDebug|x64.Build.0 = LamaDebug|x64
 		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.Release|Any CPU.ActiveCfg = Release|x64
 		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.Release|Any CPU.Build.0 = Release|x64
 		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D}.Release|x64.ActiveCfg = Release|x64
@@ -59,6 +75,10 @@ Global
 		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.Debug|Any CPU.Build.0 = Debug|x64
 		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.Debug|x64.ActiveCfg = Debug|x64
 		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.Debug|x64.Build.0 = Debug|x64
+		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.LamaDebug|Any CPU.ActiveCfg = Debug|x64
+		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.LamaDebug|Any CPU.Build.0 = Debug|x64
+		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.LamaDebug|x64.ActiveCfg = Debug|x64
+		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.LamaDebug|x64.Build.0 = Debug|x64
 		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.Release|Any CPU.ActiveCfg = Release|x64
 		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.Release|Any CPU.Build.0 = Release|x64
 		{7ABE0AB7-5659-428F-9492-DB5EF3EED58F}.Release|x64.ActiveCfg = Release|x64
@@ -67,6 +87,10 @@ Global
 		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.Debug|Any CPU.Build.0 = Debug|x64
 		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.Debug|x64.ActiveCfg = Debug|x64
 		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.Debug|x64.Build.0 = Debug|x64
+		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.LamaDebug|Any CPU.ActiveCfg = LamaDebug|x64
+		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.LamaDebug|Any CPU.Build.0 = LamaDebug|x64
+		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.LamaDebug|x64.ActiveCfg = LamaDebug|x64
+		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.LamaDebug|x64.Build.0 = LamaDebug|x64
 		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.Release|Any CPU.ActiveCfg = Release|x64
 		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.Release|Any CPU.Build.0 = Release|x64
 		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3}.Release|x64.ActiveCfg = Release|x64
@@ -75,6 +99,10 @@ Global
 		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.Debug|Any CPU.Build.0 = Debug|x64
 		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.Debug|x64.ActiveCfg = Debug|x64
 		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.Debug|x64.Build.0 = Debug|x64
+		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.LamaDebug|Any CPU.ActiveCfg = Debug|x64
+		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.LamaDebug|Any CPU.Build.0 = Debug|x64
+		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.LamaDebug|x64.ActiveCfg = Debug|x64
+		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.LamaDebug|x64.Build.0 = Debug|x64
 		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.Release|Any CPU.ActiveCfg = Release|x64
 		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.Release|Any CPU.Build.0 = Release|x64
 		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.Release|x64.ActiveCfg = Release|x64
@@ -82,6 +110,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{29C66028-3F18-4E4D-AFB2-65D54DE66D3D} = {2677EC95-4A50-4C7E-BA99-90D97AF4F4C8}
+		{AAC2C3AD-4C6A-4C29-91B7-A11D0A602BA3} = {2677EC95-4A50-4C7E-BA99-90D97AF4F4C8}
+		{E7BB5E7F-D3CD-4558-9025-575969F89BD5} = {2677EC95-4A50-4C7E-BA99-90D97AF4F4C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {306D57C8-E746-442D-9E7E-E11CB8D0D19F}
