@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointlessWaymarks.LlamaAspe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointlessWaymarks.CommonTools", "PointlessWaymarksTools\PointlessWaymarks.CommonTools\PointlessWaymarks.CommonTools.csproj", "{E7BB5E7F-D3CD-4558-9025-575969F89BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointlessWaymarks.WindowsTools", "PointlessWaymarksTools\PointlessWaymarks.WindowsTools\PointlessWaymarks.WindowsTools.csproj", "{DDF029EB-261C-4763-B710-51D5F462987C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,14 +79,6 @@ Global
 		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.Release|Any CPU.Build.0 = Release|x64
 		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.Release|x64.ActiveCfg = Release|x64
 		{E7BB5E7F-D3CD-4558-9025-575969F89BD5}.Release|x64.Build.0 = Release|x64
-		{DDF029EB-261C-4763-B710-51D5F462987C}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{DDF029EB-261C-4763-B710-51D5F462987C}.Debug|Any CPU.Build.0 = Debug|x64
-		{DDF029EB-261C-4763-B710-51D5F462987C}.Debug|x64.ActiveCfg = Debug|x64
-		{DDF029EB-261C-4763-B710-51D5F462987C}.Debug|x64.Build.0 = Debug|x64
-		{DDF029EB-261C-4763-B710-51D5F462987C}.Release|Any CPU.ActiveCfg = Release|x64
-		{DDF029EB-261C-4763-B710-51D5F462987C}.Release|Any CPU.Build.0 = Release|x64
-		{DDF029EB-261C-4763-B710-51D5F462987C}.Release|x64.ActiveCfg = Release|x64
-		{DDF029EB-261C-4763-B710-51D5F462987C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
