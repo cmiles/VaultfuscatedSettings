@@ -23,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PointlessWaymarks.AvaloniaToolkit\PointlessWaymarks.AvaloniaToolkit.csproj" />
+    <ProjectReference Include="..\PointlessWaymarksTools\PointlessWaymarks.AvaloniaToolkit\PointlessWaymarks.AvaloniaToolkit.csproj" />
+    <ProjectReference Include="..\PointlessWaymarksTools\PointlessWaymarks.LlamaAspects\PointlessWaymarks.LlamaAspects.csproj" />
+    <ProjectReference Include="..\PointlessWaymarksTools\PointlessWaymarks.VaultfuscationTools\PointlessWaymarks.VaultfuscationTools.csproj" />
   </ItemGroup>
 </Project>
