@@ -7,7 +7,7 @@ public class TestSettings : ISettingsFileType
     public const string SettingsTypeIdentifier = nameof(TestSettings);
     public string BackupDirectory { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-    public int NumberOfDays { get; set; }
+    public int NumberOfDays { get; set; } = 1;
     public string Password { get; set; } = string.Empty;
     public string SettingsType { get; set; } = SettingsTypeIdentifier;
     
