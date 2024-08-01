@@ -4,24 +4,35 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <ApplicationIcon>PointlessWaymarksVaulfuscatedTextEditorIcon.ico</ApplicationIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="PointlessWaymarksVaulfuscatedTextEditorIcon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.10" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10" />
+    <PackageReference Include="Avalonia" Version="11.1.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.1.1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.1" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.1.1" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
-    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.0.10.9" />
-    <PackageReference Include="Deadpikle.AvaloniaProgressRing" Version="0.10.6" />
-    <PackageReference Include="Metalama.Framework" Version="2024.2.7-preview" />
-    <PackageReference Include="VectSharp.MarkdownCanvas" Version="1.5.0" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.1" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.1.0" />
+    <PackageReference Include="Deadpikle.AvaloniaProgressRing" Version="0.10.8" />
+    <PackageReference Include="Metalama.Framework" Version="2024.2.19" />
+    <PackageReference Include="Metalama.Patterns.Observability" Version="2024.2.19" />
+    <PackageReference Include="VectSharp.MarkdownCanvas" Version="1.6.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PointlessWaymarksTools\PointlessWaymarks.AvaloniaToolkit\PointlessWaymarks.AvaloniaToolkit.csproj" />
     <ProjectReference Include="..\PointlessWaymarksTools\PointlessWaymarks.LlamaAspects\PointlessWaymarks.LlamaAspects.csproj" />
     <ProjectReference Include="..\PointlessWaymarksTools\PointlessWaymarks.VaultfuscationTools\PointlessWaymarks.VaultfuscationTools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="PointlessWaymarksVaulfuscatedTextEditorIcon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 </Project>

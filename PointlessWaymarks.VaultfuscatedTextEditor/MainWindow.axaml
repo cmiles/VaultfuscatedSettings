@@ -2,15 +2,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:controls="clr-namespace:PointlessWaymarks.VaultfuscatedEditor.Controls"
-        xmlns:vaultfuscatedEditor="clr-namespace:PointlessWaymarks.VaultfuscatedEditor"
         xmlns:vaultfuscatedTextEditor="clr-namespace:PointlessWaymarks.VaultfuscatedTextEditor"
-        xmlns:controls1="clr-namespace:PointlessWaymarks.VaultfuscatedTextEditor.Controls"
+        xmlns:controls="clr-namespace:PointlessWaymarks.VaultfuscatedTextEditor.Controls"
+        xmlns:avaloniaToolkit="clr-namespace:PointlessWaymarks.AvaloniaToolkit;assembly=PointlessWaymarks.AvaloniaToolkit"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PointlessWaymarks.VaultfuscatedTextEditor.MainWindow"
-        Title="PointlessWaymarks.VaultfuscatedEditor"
-        x:DataType="vaultfuscatedTextEditor:MainWindow">
+        Title="{Binding InfoTitle}"
+        x:DataType="vaultfuscatedTextEditor:MainWindowContext">
     <Grid>
-        <controls1:ObfuscatedDocumentControl DataContext="{Binding DocumentContext}" />
+        <controls:ObfuscatedDocumentControl DataContext="{Binding DocumentContext}" Margin="4"/>
+        <avaloniaToolkit:ProgramUpdateMessageControl VerticalAlignment="Top" HorizontalAlignment="Center"
+                                                     Width="400" DataContext="{Binding UpdateMessageContext}" />
     </Grid>
 </Window>

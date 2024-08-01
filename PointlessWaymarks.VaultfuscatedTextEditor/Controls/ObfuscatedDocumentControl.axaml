@@ -9,15 +9,12 @@
              x:DataType="controls1:ObfuscatedDocumentContext">
     <Grid RowDefinitions="Auto,*">
         <WrapPanel Orientation="Horizontal">
-            <Button Command="{Binding TestCommand}">Load - Vault</Button>
-            <Button Command="{Binding Test02Command}">Load - Key</Button>
-            <Button>Save</Button>
-            <Button>Save As</Button>
-            <Button>Close</Button>
+            <Button Command="{Binding LoadWithKeyCommand}">Load</Button>
+            <Button Command="{Binding SaveFileCommand}">Save</Button>
         </WrapPanel>
         <Border Grid.Row="1" BorderThickness="1" CornerRadius="2">
-            <TextBox Text="{Binding FileText}"></TextBox>
+            <TextBox Text="{Binding FileText}" TextWrapping="Wrap"></TextBox>
         </Border>
-      <statusLayer:StatusLayerControl Grid.Row="0" Grid.RowSpan="2" DataContext="{Binding StatusContext}"></statusLayer:StatusLayerControl>
+        <statusLayer:StatusLayerControl Grid.Row="0" Grid.RowSpan="2" DataContext="{Binding StatusContext}"></statusLayer:StatusLayerControl>
     </Grid>
 </UserControl>
